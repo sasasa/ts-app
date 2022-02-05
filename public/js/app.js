@@ -11229,7 +11229,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hooks_useFetchPref__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hooks/useFetchPref */ "./resources/ts/hooks/useFetchPref.ts");
 /* harmony import */ var _ListItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ListItem */ "./resources/ts/components/ListItem.tsx");
 /* harmony import */ var _providers_AdminFlagProvider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./providers/AdminFlagProvider */ "./resources/ts/components/providers/AdminFlagProvider.tsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+var __makeTemplateObject = undefined && undefined.__makeTemplateObject || function (cooked, raw) {
+  if (Object.defineProperty) {
+    Object.defineProperty(cooked, "raw", {
+      value: raw
+    });
+  } else {
+    cooked.raw = raw;
+  }
+
+  return cooked;
+};
+
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -11253,6 +11266,10 @@ var __assign = undefined && undefined.__assign || function () {
 
 
 
+
+var Sli = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].li(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\ncursor: pointer;\n"], ["\ncursor: pointer;\n"])));
+var Sdiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\ndisplay: grid;\ngrid-template-columns: 1fr 1fr;\n"], ["\ndisplay: grid;\ngrid-template-columns: 1fr 1fr;\n"])));
+var TopButton = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].button(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\nposition:fixed;\nbottom: 20px;\nright: 20px;\n"], ["\nposition:fixed;\nbottom: 20px;\nright: 20px;\n"])));
 var Home = (0,react__WEBPACK_IMPORTED_MODULE_1__.memo)(function (props) {
   console.log("Appコンポーネント");
 
@@ -11286,6 +11303,12 @@ var Home = (0,react__WEBPACK_IMPORTED_MODULE_1__.memo)(function (props) {
     fetchDistricts(pref, district);
   };
 
+  var returnTop = function returnTop() {
+    window.scrollTo({
+      top: 0
+    });
+  };
+
   var styleFunc = function styleFunc(_a) {
     var isActive = _a.isActive;
     return isActive ? {
@@ -11294,23 +11317,12 @@ var Home = (0,react__WEBPACK_IMPORTED_MODULE_1__.memo)(function (props) {
     } : {};
   };
 
-  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-    children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      children: isDistrictLoading ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-        children: "\u30C7\u30FC\u30BF\u53D6\u5F97\u4E2D..."
-      }, void 0) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
-        children: districts.map(function (district) {
-          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
-            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.NavLink, __assign({
-              style: styleFunc,
-              to: "/about/".concat(district.lat, "/").concat(district.lng, "/").concat(district.town)
-            }, {
-              children: [district.town, ":", district.koaza, ":", district.lat, ":", district.lng]
-            }), void 0)
-          }, district.lat + ':' + district.lng);
-        })
-      }, void 0)
-    }, void 0), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Sdiv, {
+    children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(TopButton, __assign({
+      onClick: returnTop
+    }, {
+      children: "\u30C8\u30C3\u30D7\u3078\u623B\u308B"
+    }), void 0), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
       children: isPrefLoading ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
         children: "\u30C7\u30FC\u30BF\u53D6\u5F97\u4E2D..."
       }, void 0) : Object.keys(pref).map(function (key) {
@@ -11318,8 +11330,8 @@ var Home = (0,react__WEBPACK_IMPORTED_MODULE_1__.memo)(function (props) {
           children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
             children: key
           }, void 0), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
-            children: pref[key].map(function (district) {
-              return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", __assign({
+            children: pref[key].map(function (district, idx) {
+              return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Sli, __assign({
                 onClick: function onClick(e) {
                   return onClickDistrict(e, key, district);
                 }
@@ -11331,30 +11343,48 @@ var Home = (0,react__WEBPACK_IMPORTED_MODULE_1__.memo)(function (props) {
         }, key);
       })
     }, void 0), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      children: isAdmin ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-        children: "\u7BA1\u7406\u8005\u3067\u3059"
-      }, void 0) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-        children: "\u7BA1\u7406\u8005\u3067\u306F\u306A\u3044"
+      children: isDistrictLoading ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+        children: "\u30C7\u30FC\u30BF\u53D6\u5F97\u4E2D..."
+      }, void 0) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
+        children: districts.map(function (district) {
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
+            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.NavLink, __assign({
+              style: styleFunc,
+              to: "/about/".concat(district.lat, "/").concat(district.lng, "/").concat(district.town)
+            }, {
+              children: [district.town, ":", district.koaza, ":", district.lat, ":", district.lng]
+            }), void 0)
+          }, district.lat + ':' + district.lng);
+        })
       }, void 0)
-    }, void 0), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({
-        onClick: onClick
-      }, {
-        children: "\u7BA1\u7406\u8005\u5207\u308A\u66FF\u3048"
-      }), void 0)
-    }, void 0), isLoading ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-      children: "\u30C7\u30FC\u30BF\u53D6\u5F97\u4E2D..."
-    }, void 0) : users.map(function (user) {
-      return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_ListItem__WEBPACK_IMPORTED_MODULE_4__.ListItem, {
-        id: user.id,
-        name: user.name,
-        age: user.age,
-        color: user.color,
-        hobbies: user.hobbies
-      }, user.id);
-    })]
+    }, void 0), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        children: isAdmin ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+          children: "\u7BA1\u7406\u8005\u3067\u3059"
+        }, void 0) : (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+          children: "\u7BA1\u7406\u8005\u3067\u306F\u306A\u3044"
+        }, void 0)
+      }, void 0), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({
+          onClick: onClick
+        }, {
+          children: "\u7BA1\u7406\u8005\u5207\u308A\u66FF\u3048"
+        }), void 0)
+      }, void 0), isLoading ? (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+        children: "\u30C7\u30FC\u30BF\u53D6\u5F97\u4E2D..."
+      }, void 0) : users.map(function (user) {
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_ListItem__WEBPACK_IMPORTED_MODULE_4__.ListItem, {
+          id: user.id,
+          name: user.name,
+          age: user.age,
+          color: user.color,
+          hobbies: user.hobbies
+        }, user.id);
+      })]
+    }, void 0)]
   }, void 0);
 });
+var templateObject_1, templateObject_2, templateObject_3;
 
 /***/ }),
 
