@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\MeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,26 +19,29 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/users', function () {
-    return [
-        [
-            "id" => 1,
-            "name" => "さえき",
-            "age" => 28,
-            "color" => 'red',
-            "hobbies" => ["プログラム","ラップ"],
-        ],
-        [
-            "id" => 2,
-            "name" => "ごとうさん",
-            "age" => 41,
-            "hobbies" => ["自転車","筋トレ"],
-        ],
-        [
-            "id" => 3,
-            "name" => "のりお",
-            "age" => 16,
-            "color" => 'blue',
-        ],
-    ];
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/me', MeController::class);
+    Route::get('/users', function () {
+        return [
+            [
+                "id" => 1,
+                "name" => "さえき",
+                "age" => 28,
+                "color" => 'red',
+                "hobbies" => ["プログラム","ラップ"],
+            ],
+            [
+                "id" => 2,
+                "name" => "ごとうさん",
+                "age" => 41,
+                "hobbies" => ["自転車","筋トレ"],
+            ],
+            [
+                "id" => 3,
+                "name" => "のりお",
+                "age" => 16,
+                "color" => 'blue',
+            ],
+        ];
+    });
 });

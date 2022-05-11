@@ -13,7 +13,7 @@ cursor: pointer;
 
 const Sdiv = styled.div`
 display: grid;
-grid-template-columns: 1fr 1fr;
+grid-template-columns: 1fr 1fr 1fr;
 `;
 const TopButton = styled.button`
 position:fixed;
@@ -43,6 +43,25 @@ export const Home: FC = memo((props) => {
     return (
       <Sdiv>
         <TopButton onClick={returnTop}>トップへ戻る</TopButton>
+        <div>
+          <div>
+            {isAdmin ? <span>管理者です</span> : <span>管理者ではない</span>}
+          </div>
+          <div>
+            <button onClick={onClick}>管理者切り替え</button>
+          </div>
+          {isLoading ? (<p>データ取得中...</p>) :
+          (users.map(user => (
+            <ListItem 
+              key={user.id}
+              id={user.id}
+              name={user.name}
+              age={user.age}
+              color={user.color}
+              hobbies={user.hobbies} 
+            />
+          )))}
+        </div>
         <div>
         {isPrefLoading ? (<p>データ取得中...</p>) :
         (Object.keys(pref).map(key => {
@@ -83,25 +102,6 @@ export const Home: FC = memo((props) => {
               }
             </ul>
           )}
-        </div>
-        <div>
-          <div>
-            {isAdmin ? <span>管理者です</span> : <span>管理者ではない</span>}
-          </div>
-          <div>
-            <button onClick={onClick}>管理者切り替え</button>
-          </div>
-          {isLoading ? (<p>データ取得中...</p>) :
-          (users.map(user => (
-            <ListItem 
-              key={user.id}
-              id={user.id}
-              name={user.name}
-              age={user.age}
-              color={user.color}
-              hobbies={user.hobbies} 
-            />
-          )))}
         </div>
       </Sdiv>
     )
